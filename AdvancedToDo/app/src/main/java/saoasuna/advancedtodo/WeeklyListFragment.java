@@ -196,7 +196,8 @@ public class WeeklyListFragment extends Fragment {
             mAssignment = assignment;
             mTitleTextView.setText(mAssignment.getTitle());
             mDetailTextView.setText(mAssignment.getDetails());
-            mDueDateTextView.setText(mAssignment.getDueDate().toString());
+            SimpleDateFormat temp = new SimpleDateFormat("E MMM dd HH:mm");
+            mDueDateTextView.setText(temp.format(mAssignment.getDueDate()));
             mFinished.setChecked(false);
         }
     }

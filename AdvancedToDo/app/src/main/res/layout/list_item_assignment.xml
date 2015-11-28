@@ -33,7 +33,9 @@
         android:layout_below="@id/list_item_assignment_title_text_view"
         android:layout_toRightOf="@id/list_item_assignment_details"
         android:padding="4dp"
-        tools:text="Due Date"/>
+        tools:text="Due Date"
+        android:gravity="right"
+        android:layout_alignParentEnd="true"/>
 
 
 

@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".NewAssignmentActivity"
-                  android:label="AdvancedToDo"
+                  android:label="Assignment Tracker"
                   android:parentActivityName=".MainActivity">
 
         </activity>

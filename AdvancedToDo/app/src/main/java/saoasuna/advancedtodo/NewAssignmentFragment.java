@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -103,6 +104,8 @@ public class NewAssignmentFragment extends Fragment {
                 title = mTitle.getText().toString();
                 details = mDetails.getText().toString();
                 repeats = 0;
+                date.setHours(hour);
+                date.setMinutes(minute);
                 try {
                     repeats = Integer.parseInt(mRepeats.getText().toString());
                 } catch (NumberFormatException io){
@@ -130,9 +133,10 @@ public class NewAssignmentFragment extends Fragment {
             return;
         }
         if (requestCode == REQUEST_DATE) {
+            // apparently date member functions are outdated, so starting to switch to Calendar
             Date date = (Date) data.getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             this.date = date;
-            mDateText.setText(date.toString());
+            mDateText.setText(date.getDay() + ", " + date.getMonth() + " " + date.getDate() + " " + date.getYear());
         }
         if (requestCode == REQUEST_TIME) {
             hour = data.getIntExtra(TimePickerFragment.EXTRA_HOUR, 0);
