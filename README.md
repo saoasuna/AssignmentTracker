@@ -4,3 +4,4 @@ Assignment Tracker is an Android application that helps you stay on top of your 
 
 
 ** currently fixing an issue caused from connection to java servlet
+*** reimplementing avl tree (back on task after exams)
