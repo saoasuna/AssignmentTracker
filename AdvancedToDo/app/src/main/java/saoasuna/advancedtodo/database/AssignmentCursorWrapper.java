@@ -18,7 +18,8 @@ public class AssignmentCursorWrapper extends CursorWrapper {
         super(cursor);
     }
 
-    public Assignment getAssignment() { // will be called when the assignmentlist class already
+    public Assignment getAssignment() { // returns an assignment
+    // will be called when the assignmentlist class already
         // moves the cursor to the appropriate place
         String uuid = getString(getColumnIndex(AssignmentTable.Cols.UUID));
         String title = getString(getColumnIndex(AssignmentTable.Cols.TITLE));

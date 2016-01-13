@@ -19,8 +19,7 @@ import saoasuna.advancedtodo.database.AssignmentDbHelper;
  */
 
 // purpose: SINGLETON CLASS that is used to access the database
-    // MODEL of MVC
-    // holds all the assignments
+    // 'MODEL' of MVC that holds all the assignments
 public class AssignmentList {
     private static AssignmentList sAssignmentList;
 
@@ -36,8 +35,8 @@ public class AssignmentList {
 
     // CONSTRUCTOR
     private AssignmentList (Context context) {
-        mContext = context.getApplicationContext();
-        mDatabase = new AssignmentDbHelper(mContext).getWritableDatabase(); // create a writable database
+        mContext = context.getApplicationContext(); // context stored for (currently unimplemented) uses involving intents
+        mDatabase = new AssignmentDbHelper(mContext).getWritableDatabase(); // //use a sqliteopenhelper to open the database
     }
 
 
@@ -51,6 +50,8 @@ public class AssignmentList {
         values.put(AssignmentTable.Cols.DETAILS, assignment.getDetails());
         values.put(AssignmentTable.Cols.REPEATS, assignment.getRepeats());
         values.put(AssignmentTable.Cols.DUEDATE, assignment.getDueDate().getTime());
+        values.put(AssignmentTable.Cols.HOUR, assignment.getDueDate().getHours()); // deprecated method, will do for now
+        values.put(AssignmentTable.Cols.MINUTE, assignment.getDueDate().getMinutes()); // deprecated method, will do for now
         return values;
     }
 
@@ -61,13 +62,12 @@ public class AssignmentList {
     }
 
     public void removeAssignmentUsingUUID(UUID uuid) {
-        String stringuuid = uuid.toString();
         mDatabase.delete(AssignmentTable.NAME, AssignmentTable.Cols.UUID + "=?", new String[]{uuid.toString()});
     }
 
     // get assignment with the corresponding id
     public Assignment getAssignment(UUID uuid) {
-        // move the cursor to the right row according to the UUID
+        // move the cursor to the correct row according to the UUID
         AssignmentCursorWrapper cursor =
                 queryAssignments(AssignmentTable.Cols.UUID + " = ?", new String[] {uuid.toString()});
         try {
@@ -84,7 +84,7 @@ public class AssignmentList {
     }
 
     // get a list of all the assignments in the database
-    public List<Assignment> getAssignments() {
+    public List<Assignment> getAssignments() { // to be made into AVL structure
         List<Assignment> assignments = new ArrayList<>();
         // setup a cursor, i'm guessing this just sets it up from the beginning of the table?
         AssignmentCursorWrapper cursor = queryAssignments(null, null);

@@ -7,7 +7,7 @@ package saoasuna.advancedtodo.database;
 // describes the format of the table for storing data
 public class AssignmentDbSchema {
     public static final class AssignmentTable {
-        public static final String NAME = "assignments"; // name of thee table in our database
+        public static final String NAME = "assignments"; // name of the table in our database
 
         public static final class Cols { // columns of our table
             public static final String UUID = "uuid";

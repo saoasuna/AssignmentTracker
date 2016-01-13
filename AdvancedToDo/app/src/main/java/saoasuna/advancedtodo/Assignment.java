@@ -6,27 +6,27 @@ import java.util.UUID;
 /**
  * Created by Ryan on 17/11/2015.
  */
-// purpose: main data items
+// purpose: main data object, holds important information about an "assignment"
 public class Assignment {
 
-    private UUID mUUID;
-    private String mTitle;
-    private String mDetails;
-    private int mRepeats; // interval to repeat at, stored in hours? 0 represents no repeat
-    private Date mDueDate;
-    private int mHourOfDay;
-    private int mMinuteOfDay;
+    private UUID mUUID; // identification ID
+    private String mTitle;  // title given by user
+    private String mDetails;    // details given by user
+    private int mRepeats; // the assignment will update every 'mRepeats' hours; 0 represents no repeat
+    private Date mDueDate; // due date of the assignment
+    private int mHourOfDay; // hour of day that the assignment is due
+    private int mMinuteOfDay;   // minute of hour that the assignment is due
 
     // CONSTRUCTORS
-    public Assignment() {
+    public Assignment() {       // generate an empty assignment
         this(UUID.randomUUID());
     }
 
-    public Assignment(UUID uuid) {
+    public Assignment(UUID uuid) {  // generate an empty assignment using the given UUID
         mUUID = uuid;
     }
 
-    public Assignment(UUID uuid, String title, String details, int repeats, Date dueDate) {
+    public Assignment(UUID uuid, String title, String details, int repeats, Date dueDate) { // generate assignment using fields
         mUUID = uuid;
         mTitle = title;
         mDetails = details;
@@ -34,7 +34,7 @@ public class Assignment {
         mDueDate = dueDate;
     }
 
-    public Assignment(String title, String details, int repeats, Date dueDate) {
+    public Assignment(String title, String details, int repeats, Date dueDate) { // generate assignment using fields
         mUUID = UUID.randomUUID();
         mTitle = title;
         mDetails = details;
@@ -42,7 +42,7 @@ public class Assignment {
         mDueDate = dueDate;
     }
 
-    public Assignment(String title, String details, int repeats, Date dueDate, int hour, int minute) {
+    public Assignment(String title, String details, int repeats, Date dueDate, int hour, int minute) { // generate assignment using fields
         mUUID = UUID.randomUUID();
         mTitle = title;
         mDetails = details;
@@ -80,6 +80,10 @@ public class Assignment {
 
     public Date getDueDate() {
         return mDueDate;
+    }
+
+    public long getAssignmentTime() {
+        return mDueDate.getTime();
     }
 
     public void setDueDate(Date dueDate) {
