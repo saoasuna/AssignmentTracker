@@ -15,6 +15,7 @@ import java.util.Calendar;
 /**
  * This is our service client, it is the 'middle-man' between the
  * service and any activity that wants to connect to the service
+
  */
 public class ScheduleClient {
 
