@@ -35,6 +35,8 @@ public class NewAssignmentFragment extends Fragment {
     private static final String DIALOG_DATE = "DialogDate";
     private static final String DIALOG_TIME = "DialogTime";
 
+    private ScheduleClient mScheduleClient;
+
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_TIME = 1;
     private String title;
@@ -51,6 +53,8 @@ public class NewAssignmentFragment extends Fragment {
     @Override
     public void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mScheduleClient = new ScheduleClient(getActivity()); // create service client and bind activity to service
+        mScheduleClient.doBindService();
 
     }
 
@@ -119,6 +123,13 @@ public class NewAssignmentFragment extends Fragment {
             }
                 Assignment newAssignment = new Assignment(title, details, repeats, date);
                 AssignmentList.get(getActivity()).addAssignment(newAssignment);
+                Calendar c = Calendar.getInstance();
+                c.setTime(date);
+                mScheduleClient.setAlarmForNotification(c); // tell service to set alarm for this date
+                // (talks to client which then talks to service)
+                if (mScheduleClient!=null) {
+                    mScheduleClient.doUnbindService();
+                }
                 getActivity().finish();
 
             }

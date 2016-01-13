@@ -44,6 +44,7 @@ public class AlarmTask implements Runnable{
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, intent, 0);
 
         // Sets an alarm - note this alarm will be lost if the phone is turned off and on again
+        // can avoid this by having app notified of the phone starting up, and restarting the alarms
         am.set(AlarmManager.RTC, date.getTimeInMillis(), pendingIntent);
     }
 }

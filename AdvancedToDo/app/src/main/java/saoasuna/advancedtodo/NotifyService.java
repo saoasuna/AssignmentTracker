@@ -11,6 +11,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 /**
@@ -34,7 +35,7 @@ public class NotifyService extends Service {
     // Unique id to identify the notification.
     private static final int NOTIFICATION = 123;
     // Name of an intent extra we can use to identify if this service was started to create a notification
-    public static final String INTENT_NOTIFY = "com.blundell.tut.service.INTENT_NOTIFY";
+    public static final String INTENT_NOTIFY = "com.saoasuna.advancedtodo.service.INTENT_NOTIFY";
     // The system notification manager
     private NotificationManager mNM;
 
@@ -69,24 +70,27 @@ public class NotifyService extends Service {
      */
     private void showNotification() {
         // This is the 'title' of the notification
-        CharSequence title = "Alarm!!";
+        CharSequence title = "Assignment due!";
         // This is the icon to use on the notification
-        int icon = R.drawable.ic_dialog_alert;
+        int icon = R.drawable.ic_stat_name;
         // This is the scrolling text of the notification
-        CharSequence text = "Your notification time is upon us.";
+        CharSequence text = "Your assignment is due.";
         // What time to show on the notification
         long time = System.currentTimeMillis();
 
-        Notification notification = new Notification(icon, text, time);
+
 
         // The PendingIntent to launch our activity if the user selects this notification
-        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, SecondActivity.class), 0);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
+        Notification notification = builder.setContentIntent(contentIntent).setSmallIcon(icon).setTicker(text)
+                .setWhen(time).setAutoCancel(true).setContentTitle(title).setContentText(text).build();
+
 
         // Set the info for the views that show in the notification panel.
-        notification.setLatestEventInfo(this, title, text, contentIntent);
 
         // Clear the notification when it is pressed
-        notification.flags |= Notification.FLAG_AUTO_CANCEL;
 
         // Send the notification to the system.
         mNM.notify(NOTIFICATION, notification);
