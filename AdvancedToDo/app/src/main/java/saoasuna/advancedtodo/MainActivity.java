@@ -20,6 +20,8 @@ public class MainActivity extends AppCompatActivity {
     // so that fragments can be scrolled between
     private ViewPager mViewPager;
 
+    //private ScheduleClient mScheduleClient;
+
     // set up the view pager and the tab layout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
         mViewPager = (ViewPager) findViewById(R.id.viewpager);
         // setup adapter for the view pager
         mViewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), MainActivity.this));
+
+        //mScheduleClient = new ScheduleClient(this); // create new service client and bind main activity to this service
+        //mScheduleClient.doBindService();
 
         TabLayout tabLayout = (TabLayout)findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(mViewPager);

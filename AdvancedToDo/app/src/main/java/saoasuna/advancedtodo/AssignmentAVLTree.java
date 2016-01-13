@@ -9,10 +9,12 @@ public class AssignmentAVLTree {        // organizes the assignments in a tree b
     // left = earlier, right = same time or after
 
     private Node mRoot;
+    private int mSize;
 
     public AssignmentAVLTree(Node root) {
         mRoot = root;
         mRoot.setHeight(0);
+        mSize = 1;
     }
 
     //public boolean checkOverlap() {
@@ -67,6 +69,7 @@ public class AssignmentAVLTree {        // organizes the assignments in a tree b
 
     public Node insert(Assignment assignment) { // standard BST insert, returns reference to inserted Node
         Node currentNode = mRoot;
+        mSize++;
 
         // if the tree is empty
         if (mRoot == null) {
@@ -238,6 +241,10 @@ public class AssignmentAVLTree {        // organizes the assignments in a tree b
 
     public void delete(Assignment assignment) { // standard BST delete
         Node toBeDeleted = search(mRoot, assignment);
+        if (toBeDeleted == null) {
+            return;
+        }
+        mSize--;
 
         // has no left child (or no child at all)
         if (toBeDeleted.getLeftChild() == null) {
@@ -264,6 +271,41 @@ public class AssignmentAVLTree {        // organizes the assignments in a tree b
             // update heights
         }
 
+
+    }
+
+    public void AVLDelete(Assignment assignment) { // "lazy deletion", much simpler and sufficient in practice
+        // (according to cse 332 from university of washington
+        // standard BST delete
+        Node toBeDeleted = search(mRoot, assignment);
+
+        // has no left child (or no child at all)
+        if (toBeDeleted.getLeftChild() == null) {
+            transplant(toBeDeleted, toBeDeleted.getRightChild());
+            // update height
+        }
+        // has only a left child
+        else if (toBeDeleted.getRightChild() == null) {
+            transplant(toBeDeleted, toBeDeleted.getLeftChild());
+            // update height
+        }
+        // has two children
+        else {
+            Node successor = subtreeMinimum(toBeDeleted.getRightChild());
+            if (successor.getParent() != toBeDeleted) { // if the successor is not a direct child
+                transplant(successor, successor.getRightChild()); // the successor does not have a left child, thus easy replace by right
+                // replace the successor by its right child
+                successor.setRightChild(toBeDeleted.getRightChild()); // the successor is moved up to take the place of toBeDeleted
+                successor.getRightChild().setParent(successor);
+            }
+            transplant(toBeDeleted, successor);
+            successor.setLeftChild(toBeDeleted.getLeftChild());
+            successor.getLeftChild().setParent(successor);
+            // update heights
+        }
+
+
+        // rotations?
 
     }
 

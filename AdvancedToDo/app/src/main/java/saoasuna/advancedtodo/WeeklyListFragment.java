@@ -145,6 +145,11 @@ public class WeeklyListFragment extends Fragment {
         // setting each view to display the correct title, details, date
         @Override
         public void onBindViewHolder(AssignmentHolder holder, int position) {
+
+            // when implemented with avl tree rather than list, have position 0 correspond to
+            // tree-minimum. keep a position counter to find out the # of calls that have to be
+            // made to tree-successor or tree-predecessor
+
             Assignment assignment = mAssignments.get(position);
             holder.bindAssignment(assignment);
         }
