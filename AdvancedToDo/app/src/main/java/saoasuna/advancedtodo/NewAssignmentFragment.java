@@ -123,9 +123,9 @@ public class NewAssignmentFragment extends Fragment {
             }
                 Assignment newAssignment = new Assignment(title, details, repeats, date);
                 AssignmentList.get(getActivity()).addAssignment(newAssignment);
-                Calendar c = Calendar.getInstance();
-                c.setTime(date);
-                mScheduleClient.setAlarmForNotification(c); // tell service to set alarm for this date
+                //Calendar c = Calendar.getInstance();
+                //c.setTime(date);
+                mScheduleClient.setAlarmForNotification(newAssignment); // tell service to set alarm for this date
                 // (talks to client which then talks to service)
                 if (mScheduleClient!=null) {
                     mScheduleClient.doUnbindService();

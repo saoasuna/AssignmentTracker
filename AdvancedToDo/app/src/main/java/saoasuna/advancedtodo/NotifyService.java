@@ -50,8 +50,10 @@ public class NotifyService extends Service {
         Log.i("LocalService", "Received start id " + startId + ": " + intent);
 
         // If this service was started by out AlarmTask intent then we want to show our notification
-        if(intent.getBooleanExtra(INTENT_NOTIFY, false))
-            showNotification();
+        if(intent.getBooleanExtra(INTENT_NOTIFY, false)) {
+            String title = intent.getStringExtra("TITLE");
+            showNotification(title);
+        }
 
         // We don't care if this service is stopped as we have already delivered our notification
         return START_NOT_STICKY;
@@ -68,9 +70,8 @@ public class NotifyService extends Service {
     /**
      * Creates a notification and shows it in the OS drag-down status bar
      */
-    private void showNotification() {
+    private void showNotification(String title) {
         // This is the 'title' of the notification
-        CharSequence title = "Assignment due!";
         // This is the icon to use on the notification
         int icon = R.drawable.ic_stat_name;
         // This is the scrolling text of the notification
@@ -93,7 +94,11 @@ public class NotifyService extends Service {
         // Clear the notification when it is pressed
 
         // Send the notification to the system.
-        mNM.notify(NOTIFICATION, notification);
+
+
+        // here it only allows one notification at a time (updates the old one whenever a new one appears)
+        // uses title as a distinguishing tag
+        mNM.notify(title, NOTIFICATION, notification);
 
         // Stop the service when we are finished
         stopSelf();
