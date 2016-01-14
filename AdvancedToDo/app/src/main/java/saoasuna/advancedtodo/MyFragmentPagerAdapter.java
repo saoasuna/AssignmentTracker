@@ -34,9 +34,9 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return AllListFragment.newInstance(); // should check to see if a fragment already exists
             case 1:
-                return AllListFragment.newInstance();
+                return AllListFragment.newInstance(); // will update soon, weekly
             default:
-                return AllListFragment.newInstance();
+                return AllListFragment.newInstance(); // will update soon, completed
         }
 
     }
