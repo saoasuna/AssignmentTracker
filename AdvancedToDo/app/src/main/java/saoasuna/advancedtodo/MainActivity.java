@@ -1,5 +1,6 @@
 package saoasuna.advancedtodo;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -59,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if (id==R.id.chat) {
+            Intent i = new Intent(this, MainChatActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
