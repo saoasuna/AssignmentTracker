@@ -17,8 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 /**
- * @author appsrox.com
- *
+ * Created by Ryan on 19/11/2015.
  */
 public class MainChatActivity extends ListActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 

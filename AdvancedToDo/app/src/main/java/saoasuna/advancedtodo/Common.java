@@ -11,9 +11,8 @@ import android.preference.PreferenceManager;
 import android.util.Patterns;
 
 import saoasuna.advancedtodo.client.Constants;
-
 /**
- *
+ * Created by Ryan on 19/11/2015.
  */
 public class Common extends Application {
 

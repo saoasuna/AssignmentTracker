@@ -13,8 +13,7 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
 
 /**
-
- *
+ * Created by Ryan on 20/11/2015.
  */
 public class DataProvider extends ContentProvider {
 

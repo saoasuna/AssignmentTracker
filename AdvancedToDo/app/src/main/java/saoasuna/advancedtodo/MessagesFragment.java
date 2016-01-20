@@ -19,12 +19,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 /**
- * A fragment representing a list of Items.
- * <p />
- * <p />
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- *
+ * Created by Ryan on 17/11/2015.
  */
 public class MessagesFragment extends ListFragment implements LoaderManager.LoaderCallbacks<Cursor> {
 	

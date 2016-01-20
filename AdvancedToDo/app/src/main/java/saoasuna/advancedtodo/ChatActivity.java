@@ -25,7 +25,7 @@ import saoasuna.advancedtodo.client.GcmUtil;
 import saoasuna.advancedtodo.client.ServerUtilities;
 
 /**
- *
+ * Created by Ryan on 17/11/2015.
  */
 public class ChatActivity extends Activity implements MessagesFragment.OnFragmentInteractionListener, EditContactDialog.OnFragmentInteractionListener {
 
